@@ -7,9 +7,9 @@ export default async function handler(req, res) {
   const { phone, code } = req.body;
 
   try {
-    const result = await client.verify.v2.services(process.env.TWILIO_SERVICE)
-      .verificationChecks
-      .create({ to: phone, code });
+    const result = await client.verify.v2
+      .services(process.env.TWILIO_SERVICE)
+      .verificationChecks.create({ to: phone, code });
 
     res.status(200).json({ success: result.status === 'approved' });
   } catch (err) {
